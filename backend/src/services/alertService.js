@@ -2,10 +2,22 @@ import { mockMetrics }
   from "../data/mockMetrics.js";
 
 export const generateAlerts = () => {
+
   const alerts = [];
 
-  // High API traffic
-  if (mockMetrics.apiRequests > 20000) {
+  const apiRequests =
+    Math.floor(Math.random() * 30000);
+
+  const storageGrowth =
+    Math.floor(Math.random() * 100);
+
+  const lambdaDuration =
+    Math.floor(Math.random() * 10);
+
+  const estimatedMonthlyCost =
+    Math.floor(Math.random() * 200);
+
+  if (apiRequests > 22000) {
     alerts.push({
       type: "Traffic Spike",
       severity: "High",
@@ -14,8 +26,7 @@ export const generateAlerts = () => {
     });
   }
 
-  // Storage anomaly
-  if (mockMetrics.storageGrowth > 75) {
+  if (storageGrowth > 80) {
     alerts.push({
       type: "Storage Alert",
       severity: "Medium",
@@ -24,23 +35,21 @@ export const generateAlerts = () => {
     });
   }
 
-  // Lambda performance issue
-  if (mockMetrics.lambdaDuration > 8) {
+  if (lambdaDuration > 8) {
     alerts.push({
       type: "Lambda Performance",
       severity: "High",
       message:
-        "Lambda execution duration exceeded threshold.",
+        "Lambda duration exceeded threshold.",
     });
   }
 
-  // Cost threshold warning
-  if (mockMetrics.estimatedMonthlyCost > 100) {
+  if (estimatedMonthlyCost > 120) {
     alerts.push({
       type: "Budget Warning",
       severity: "Medium",
       message:
-        "Estimated monthly cost nearing limit.",
+        "Monthly cost nearing threshold.",
     });
   }
 

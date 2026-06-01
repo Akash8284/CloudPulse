@@ -1,40 +1,49 @@
 import { mockMetrics } from "../data/mockMetrics.js";
 
 export const generateRecommendations = () => {
+
   const recommendations = [];
 
-  // Idle resource detection
-  if (mockMetrics.cpuUsage < 5) {
+  const cpuUsage =
+    Math.floor(Math.random() * 100);
+
+  const apiRequests =
+    Math.floor(Math.random() * 30000);
+
+  const lambdaDuration =
+    Math.floor(Math.random() * 10);
+
+  const storageGrowth =
+    Math.floor(Math.random() * 100);
+
+  if (cpuUsage < 20) {
     recommendations.push({
       type: "Idle Resource",
       severity: "Medium",
       message:
-        "Low CPU usage detected. Consider downsizing resources.",
+        "Low CPU usage detected.",
     });
   }
 
-  // API spike detection
-  if (mockMetrics.apiRequests > 20000) {
+  if (apiRequests > 20000) {
     recommendations.push({
       type: "Traffic Spike",
       severity: "High",
       message:
-        "Unusual API traffic spike detected.",
+        "High API traffic detected.",
     });
   }
 
-  // Lambda optimization
-  if (mockMetrics.lambdaDuration > 5) {
+  if (lambdaDuration > 7) {
     recommendations.push({
       type: "Lambda Optimization",
       severity: "Medium",
       message:
-        "Lambda execution duration is high.",
+        "High Lambda duration detected.",
     });
   }
 
-  // Storage anomaly
-  if (mockMetrics.storageGrowth > 70) {
+  if (storageGrowth > 75) {
     recommendations.push({
       type: "Storage Growth",
       severity: "Medium",

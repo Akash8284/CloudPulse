@@ -1,16 +1,31 @@
-const MetricCard = ({ title, value, unit }) => {
+const MetricCard = ({
+  title,
+  value,
+  change,
+}) => {
+
   return (
-    <div className="bg-[#1e293b] p-6 rounded-2xl border border-gray-800">
-      <h2 className="text-gray-400 mb-3">
+
+    <div className="bg-[#111c44] rounded-3xl p-6 border border-[#1e293b] hover:border-purple-500 transition duration-300">
+
+      <p className="text-gray-400 text-sm">
         {title}
+      </p>
+
+      <h2 className="text-5xl font-bold text-white mt-4">
+        {value}
       </h2>
 
-      <p className="text-3xl font-bold text-white">
-        {value}
-        <span className="text-lg ml-1 text-gray-400">
-          {unit}
-        </span>
-      </p>
+      <div className="flex items-center justify-between mt-6">
+
+        <p className="text-green-400 font-medium">
+          ↑ {change}
+        </p>
+
+        <div className="w-20 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full opacity-30"></div>
+
+      </div>
+
     </div>
   );
 };

@@ -5,7 +5,9 @@ const API_URL =
 
 export const fetchRecommendations =
   async () => {
-    const response = await axios.get(API_URL);
+
+    const response =
+      await axios.get(API_URL);
 
     return response.data;
-  };
+};
