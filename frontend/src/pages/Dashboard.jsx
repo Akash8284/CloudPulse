@@ -14,6 +14,8 @@ import { fetchHistory } from "../services/historyService";
 
 import { fetchHealth } from "../services/healthService";
 
+import { fetchEC2 } from "../services/awsService";
+
 const Dashboard = () => {
 
   const [metrics, setMetrics] = useState({});
@@ -21,6 +23,12 @@ const Dashboard = () => {
   const [history, setHistory] = useState([]);
 
   const [health, setHealth] = useState(null);
+
+  const [ec2, setEC2] = useState({
+    total: 0,
+    running: 0,
+    stopped: 0,
+});
 
   useEffect(() => {
 
@@ -31,6 +39,12 @@ const Dashboard = () => {
       const historyData = await fetchHistory();
 
       const healthData = await fetchHealth();
+
+      const ec2Data = await fetchEC2();
+
+       if (ec2Data.success) {
+       setEC2(ec2Data);
+       }
 
       setMetrics(data);
 
@@ -110,10 +124,10 @@ const Dashboard = () => {
         />
 
         <MetricCard
-          title="Lambda Invocations"
-          value={metrics.lambdaInvocations || 0}
-          change="8.1%"
-        />
+           title="EC2 Instances"
+           value={ec2.running}
+          subtitle={`${ec2.total} Total | ${ec2.stopped} Stopped`}
+         />
 
         <MetricCard
           title="Infrastructure Health"

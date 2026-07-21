@@ -6,13 +6,17 @@ import alertRoutes from "./routes/alertRoutes.js";
 import recommendationRoutes from "./routes/recommendationRoutes.js";
 import healthRoutes from "./routes/healthRoutes.js";
 
+import awsRoutes from "./routes/awsRoutes.js";
+
 const app = express();
 
 app.use(cors());
-
+  
 app.use("/api/metrics", metricsRoutes);
 
 app.use("/api/alerts", alertRoutes);
+
+app.use("/api/aws", awsRoutes);
 
 app.use(
   "/api/recommendations",
