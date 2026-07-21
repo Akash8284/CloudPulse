@@ -1,8 +1,12 @@
 import express from "express";
 import { testCloudWatch } from "../services/cloudwatchService.js";
-import { fetchEC2 } from "../controllers/ec2Controller.js";
+//import { fetchEC2 } from "../controllers/ec2Controller.js";
+//import { fetchDashboard } from "../controllers/dashboardController.js";
+
 
 const router = express.Router();
+
+router.get("/dashboard", fetchDashboard);
 
 router.get("/test", async (req, res) => {
     const result = await testCloudWatch();
